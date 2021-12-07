@@ -1,12 +1,7 @@
-
-import CountriesApp from './CountriesApp.jsx';
+import React from "react";
+import AppRouter from "./routers/AppRouter";
 
 function App() {
-  return (
-    <>
-    <CountriesApp/>
-    </>
-  );
+  return <AppRouter />;
 }
-
 export default App;
