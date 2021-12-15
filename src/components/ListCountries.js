@@ -18,13 +18,10 @@ const ListCountries = () => {
         )}
         <div id="countries" className="container">
           {countries.map((country) => (
-            <Link
-              to={`/country/${country.name.common}`}
-              key={country.flags.png}
-            >
+            <Link to={`/country/${country.name}`} key={country.flags.png}>
               <div className={bgColor ? `country` : `countryDark`}>
                 <img src={country.flags.svg} alt={country.name.common} />
-                <h2>{country?.name.common}</h2>
+                <h2>{country?.name}</h2>
                 <p>
                   <strong>Population: </strong>
                   {parseFloat(country.population)}

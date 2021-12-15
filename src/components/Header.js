@@ -10,8 +10,8 @@ const Header = () => {
   return (
     <header className={bgColor ? `header` : `headerDark`}>
       <div className="container content">
-        <Link to="/">
-          <h2>What is the wolrd?</h2>
+        <Link to="/home">
+          <h2>Where is the world?</h2>
         </Link>
         <div className="darkMode" onClick={() => setBgColor(!bgColor)}>
           <i className={bgColor ? `far fa-moon` : `fas fa-sun`}></i>{" "}

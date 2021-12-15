@@ -13,7 +13,7 @@ const Search = () => {
     } else {
       const region = e.target.value;
       const name_region = region;
-      const url = "https://restcountries.com/v3.1/region/";
+      const url = "https://restcountries.com/v2/region/";
       const resp = await fetch(url + name_region);
       const countries = await resp.json();
       setCountries(countries);
@@ -21,7 +21,7 @@ const Search = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `https://restcountries.com/v3.1/name/${country}`;
+    const url = `https://restcountries.com/v2/name/${country}`;
     const resp = await fetch(url);
     const searchCountry = await resp.json();
     if (searchCountry.length > 0) {
@@ -31,8 +31,14 @@ const Search = () => {
       setCountry("");
     }
   };
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     setCountry(e.target.value);
+    const url = `https://restcountries.com/v2/name/${country}`;
+    const resp = await fetch(url);
+    const searchCountry = await resp.json();
+    if (searchCountry.length > 0) {
+      setCountries(searchCountry);
+    }
   };
 
   return (
@@ -53,7 +59,7 @@ const Search = () => {
           </div>
           <div className={bgColor ? `region` : `regionDark`}>
             <select name="region" onChange={getRegion}>
-              <option value="0">Select Region</option>
+              <option value="0">Filter by Region</option>
               <option value="Africa">Africa</option>
               <option value="Americas">Americas</option>
               <option value="Asia">Asia</option>

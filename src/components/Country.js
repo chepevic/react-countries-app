@@ -10,7 +10,7 @@ const Country = () => {
 
   useEffect(() => {
     const getCountry = async () => {
-      const url = `https://restcountries.com/v3.1/name/${name}`;
+      const url = `https://restcountries.com/v2/name/${name}`;
       const resp = await fetch(url);
       const data = await resp.json();
       setCountry(data);
@@ -29,7 +29,7 @@ const Country = () => {
               <i className="fas fa-arrow-left"></i> Back
             </Link>
           </div>
-          {country.map((data) => (
+          {country?.map((data) => (
             <div className="details" key={data.flags.png}>
               <div className="flag">
                 <img src={data.flags.svg} alt={data.name.common} />
@@ -40,11 +40,11 @@ const Country = () => {
                   <div>
                     <p>
                       <strong>Native Name: </strong>
-                      {data.name.common}
+                      {data.nativeName}
                     </p>
                     <p>
                       <strong>Population: </strong>
-                      {data.population}
+                      {parseInt(data.population).toFixed(2)}
                     </p>
                     <p>
                       <strong>Region: </strong>
@@ -62,15 +62,15 @@ const Country = () => {
                   <div>
                     <p>
                       <strong>Top Level Domain: </strong>
-                      {data.tld}
+                      {data.topLevelDomain}
                     </p>
                     <p>
                       <strong>Currencies: </strong>
-                      {JSON.stringify(data?.currencies)}
+                      {data?.currencies.map((currency) => currency.name + " ")}
                     </p>
                     <p>
                       <strong>Languages: </strong>
-                      {JSON.stringify(data?.languages)}
+                      {data?.languages.map((language) => language.name + " ")}
                     </p>
                   </div>
                 </div>
